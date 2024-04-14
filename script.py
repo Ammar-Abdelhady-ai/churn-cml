@@ -142,7 +142,7 @@ train_model(X_train=X_train_final, y_train=y_train, plot_name="without-imbalance
 train_model(X_train=X_train_final, y_train=y_train, plot_name="with-class-weight", class_weight=dict_weight)
 train_model(X_train=X_train_resampled, y_train=y_train_resampled, plot_name="with-SMOT", class_weight=None)
 
-paths = [r".\without-imbalance.png", r".\with-class-weight.png", r".\with-SMOT.png"]
+paths = ["without-imbalance.png", "with-class-weight.png", "with-SMOT.png"]
 
 plt.figure(figsize=(10, 30))
 
