@@ -153,7 +153,7 @@ for i, path in enumerate(paths, start=1):
     plt.imshow(img)
 
 plt.title(clf_name, fontsize=8)
-plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+
 plt.savefig("Confusion Matrix.png", bbox_inches="tight", dpi=300)
 
 for path in paths:
