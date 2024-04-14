@@ -127,8 +127,8 @@ def train_model(X_train, y_train, plot_name="", class_weight=None):
     plt.xticks(ticks=np.arange(2) + 0.5, labels=[False, True])
     plt.yticks(ticks=np.arange(2) + 0.5, labels=[False, True])
     
-    plt.savefig(f"{plot_name}.png", bbox_inches="tight", dpi=300)
-    plt.close()
+   # plt.savefig(f"{plot_name}.png", bbox_inches="tight", dpi=300)
+   # plt.close()
 
     with open("metrics.txt", "a") as f:
         f.write(f"{clf_name} {plot_name} \n")
