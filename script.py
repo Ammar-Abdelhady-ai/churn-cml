@@ -146,6 +146,7 @@ paths = ["without-imbalance.png", "with-class-weight.png", "with-SMOT.png"]
 
 plt.figure(figsize=(10, 30))
 
+
 for i, path in enumerate(paths, start=1):
     img = Image.open(path)
     plt.subplot(1, len(path), i)
