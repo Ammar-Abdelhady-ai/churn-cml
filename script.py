@@ -155,7 +155,7 @@ for i, path in enumerate(paths, start=1):
 
 plt.title(clf_name, fontsize=8)
 
-plt.savefig("Confusion Matrix.png", bbox_inches="tight", dpi=300)
+plt.savefig("Confusion_Matrix.png", bbox_inches="tight", dpi=300)
 
 for path in paths:
     os.remove(path)
