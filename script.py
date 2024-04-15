@@ -23,7 +23,8 @@ from sklearn.metrics import confusion_matrix, f1_score
 import joblib
 
 
-df = pd.read_csv("dataset.csv")
+cwd = os.getcwd()
+df = pd.read_csv(os.path.join(cwd, "Data", "dataset.csv"))
 
 df.drop(["RowNumber", "CustomerId", "Surname"], axis=1, inplace=True)
 df.drop(index=df[df["Age"] > 80].index.to_list(), axis=0, inplace=True)
@@ -136,15 +137,18 @@ def train_model(X_train, y_train, plot_name="", class_weight=None):
         f.write(f"F1-Score of Testing is : {score_test * 100: .2f}% \n")
         f.write("\n" + f"-"*100 + "\n\n")
     
+    # Save Model
+    joblib.dump(clf, os.path.join(cwd, "Models", f"{clf_name}-{plot_name}.h5") )
     return True
 
 train_model(X_train=X_train_final, y_train=y_train, plot_name="without-imbalance", class_weight=None)
 train_model(X_train=X_train_final, y_train=y_train, plot_name="with-class-weight", class_weight=dict_weight)
 train_model(X_train=X_train_resampled, y_train=y_train_resampled, plot_name="with-SMOT", class_weight=None)
 
-paths = [r".\without-imbalance.png", r".\with-class-weight.png", r".\with-SMOT.png"]
+paths = ["without-imbalance.png", "with-class-weight.png", "with-SMOT.png"]
 
 plt.figure(figsize=(10, 30))
+
 
 for i, path in enumerate(paths, start=1):
     img = Image.open(path)
@@ -153,8 +157,8 @@ for i, path in enumerate(paths, start=1):
     plt.imshow(img)
 
 plt.title(clf_name, fontsize=8)
-plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-plt.savefig("Confusion Matrix.png", bbox_inches="tight", dpi=300)
+
+plt.savefig("Confusion_Matrix.png", bbox_inches="tight", dpi=300)
 
 for path in paths:
     os.remove(path)
