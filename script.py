@@ -23,7 +23,8 @@ from sklearn.metrics import confusion_matrix, f1_score
 import joblib
 
 
-df = pd.read_csv("dataset.csv")
+cwd = os.getcwd()
+df = pd.read_csv(os.path.join(cwd, "Data", "dataset.csv"))
 
 df.drop(["RowNumber", "CustomerId", "Surname"], axis=1, inplace=True)
 df.drop(index=df[df["Age"] > 80].index.to_list(), axis=0, inplace=True)
@@ -136,6 +137,8 @@ def train_model(X_train, y_train, plot_name="", class_weight=None):
         f.write(f"F1-Score of Testing is : {score_test * 100: .2f}% \n")
         f.write("\n" + f"-"*100 + "\n\n")
     
+    # Save Model
+    joblib.dump(clf, os.path.join(cwd, "Models", f"{clf_name}-{plot_name}.h5") )
     return True
 
 train_model(X_train=X_train_final, y_train=y_train, plot_name="without-imbalance", class_weight=None)
